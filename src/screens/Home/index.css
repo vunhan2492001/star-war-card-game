@@ -1,0 +1,101 @@
+*{ 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+}
+
+.container {
+    height: 100vh; 
+    width: 100%; 
+    background-image: url("https://i.pinimg.com/originals/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.info-score {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.user {
+    padding: 10px;
+    width: 100px;
+    /* border: 1px solid white; */
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    background-color: blue;
+}
+
+.computer {
+    padding: 10px;
+    width: 100px;
+    /* border: 1px solid white; */
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.round {
+    text-align: center;
+    margin-top: 20px; 
+    padding: 10px;
+    color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 200px; 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: yellow;
+}
+.card-container {
+    display: flex;
+    justify-content: center;
+    column-gap: 100px;
+}
+.card {
+    margin-top: 50px;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.info {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 5px;
+}
+.info-user:hover {
+    background-color: rgba(255, 255, 0, 0.881);
+}
+
+.info-user-name,
+.info-computer-name {
+    text-align: center;
+}
+
+img {
+    width: 257px;
+    height: 100px;
+}
+
+.info-img {
+    height: 100px;
+}
+span {
+    float: right;
+}
+
+.card-user {
+    background-color: rgba(0, 0, 255, 0.681);
+}
+
+.card-computer {
+    background-color: rgba(255, 0, 0, 0.681);
+}
