@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 
 const Home = () => {
+  const [isShaking, setIsShaking] = useState(false);
+
+  const handleCardUserClick = () => {
+    setIsShaking(true);
+    setTimeout(() => setIsShaking(false), 500);
+  };
   return (
     <div className="container">
+      <div className="logo-class">
+        <img
+          className="logo"
+          src="https://i.pinimg.com/originals/b6/af/5a/b6af5aeff0ee43a4253fc70c167bb6db.png"
+          alt=""
+        />
+      </div>
       <div className="info-score">
         <div className="user">
           <div className="name user-name">
@@ -36,20 +49,20 @@ const Home = () => {
           <div className="info info-img info-img-user">
             <img src="" alt="" />
           </div>
-          <div className="info info-user">
+          <div className="info info-user" onClick={handleCardUserClick}>
             Maximum speed <span>?</span>
           </div>
-          <div className="info info-user">
+          <div className="info info-user" onClick={handleCardUserClick}>
             Cost in credits<span>?</span>
           </div>
-          <div className="info info-user">
+          <div className="info info-user" onClick={handleCardUserClick}>
             Number of passengers<span>?</span>
           </div>
-          <div className="info info-user">
+          <div className="info info-user" onClick={handleCardUserClick}>
             Films<span>?</span>
           </div>
         </div>
-        <div className="card card-computer">
+        <div className={`card card-computer ${isShaking ? "shake" : ""}`}>
           <div className="info info-computer-name">Name</div>
           <div className="info info-img info-img-computer">
             <img src="" alt="" />
