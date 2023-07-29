@@ -6,14 +6,27 @@
 }
 
 .container {
+    position: relative;
     height: 100vh; 
     width: 100%; 
-    background-image: url("https://i.pinimg.com/originals/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg");
+    background-color: rgba(0, 0, 67, 0.499);
+    background: url("https://wallpaperaccess.com/full/2724260.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
 }
+
+.logo-class {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo {
+    width: 150px;
+}
+
 .info-score {
     display: flex;
     justify-content: space-around;
@@ -23,34 +36,44 @@
 .user {
     padding: 10px;
     width: 100px;
-    /* border: 1px solid white; */
-    color: white;
+    border: 5px solid blue;
+    color: black;
     text-align: center;
     border-radius: 10px;
-    background-color: blue;
+    background-color: yellow;
 }
 
 .computer {
     padding: 10px;
     width: 100px;
-    /* border: 1px solid white; */
-    color: white;
+    border: 5px solid red;
+    color: black;
     text-align: center;
     border-radius: 10px;
-    background-color: red;
+    background-color: yellow;
 }
 
 .round {
     text-align: center;
     margin-top: 20px; 
     padding: 10px;
-    color: black;
-    border: 1px solid white;
+    color: white;
     border-radius: 10px;
     width: 200px; 
     margin-left: auto;
     margin-right: auto;
-    background-color: yellow;
+    border: 5px solid yellow;
+    background-image: linear-gradient(to right, #0015ff, #ff0000);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.user-score > h4 {
+    color: blue;
+}
+
+.computer-score > h4 {
+    color: red;
 }
 .card-container {
     display: flex;
@@ -60,19 +83,29 @@
 .card {
     margin-top: 50px;
     padding: 10px;
-    color: white;
+    color: black;
     border-radius: 10px;
     width: 300px;
+    border: 5px solid yellow;
 }
 
 .info {
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    background-color: white;
     border-radius: 10px;
     margin: 15px;
     padding: 5px;
 }
+
+.info-user{
+    background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgb(229, 255, 0) 50%) right;
+    background-size: 200%;
+    transition: .2s ease-out;
+}
+
 .info-user:hover {
-    background-color: rgba(255, 255, 0, 0.881);
+    /* background-color: rgba(255, 255, 0, 0.881); */
+    background-position: left;
 }
 
 .info-user-name,
@@ -80,12 +113,10 @@
     text-align: center;
 }
 
-img {
-    width: 257px;
-    height: 100px;
-}
 
 .info-img {
+    height: 100px;
+    width: 257px;
     height: 100px;
 }
 span {
@@ -93,9 +124,23 @@ span {
 }
 
 .card-user {
-    background-color: rgba(0, 0, 255, 0.681);
+    background-color: rgba(0, 0, 255, 0.800);
 }
 
 .card-computer {
-    background-color: rgba(255, 0, 0, 0.681);
+    background-color: rgba(255, 0, 0, 0.800);
 }
+
+/* Thêm keyframe animation cho hiệu ứng rung */
+@keyframes shake {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5px, -5px); }
+    20% { transform: translate(5px, 5px); }
+    30% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    50% { transform: translate(0, 0); }
+  }
+  .shake {
+    animation: shake 0.4s ease-in-out;
+  }
+  
