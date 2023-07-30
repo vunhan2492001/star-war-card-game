@@ -1,0 +1,45 @@
+.form {
+    background-image: url(https://wallpaperaccess.com/full/2724260.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.header {
+    text-align: center;
+    padding: 40px;
+    ;
+    color: red;
+}
+
+.container {
+
+    background-position: 50%;
+    background-size: 200px auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    /* Căn giữa nội dung của form */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 17px;
+
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+}
+
+.form-field {
+    margin-bottom: 15px;
+    /* Khoảng cách giữa các dòng trong form */
+}
