@@ -1,4 +1,4 @@
-*{ 
+* {
     margin: 0;
     padding: 0;
     border: 0;
@@ -7,8 +7,8 @@
 
 .container {
     position: relative;
-    height: 100vh; 
-    width: 100%; 
+    height: 100vh;
+    width: 100%;
     background-color: rgba(0, 0, 67, 0.499);
     background: url("https://wallpaperaccess.com/full/2724260.jpg");
     background-position: center;
@@ -25,6 +25,7 @@
 
 .logo {
     width: 150px;
+    margin-bottom: 30px;
 }
 
 .info-score {
@@ -55,11 +56,11 @@
 
 .round {
     text-align: center;
-    margin-top: 20px; 
+    margin-top: 50px;
     padding: 10px;
     color: white;
     border-radius: 10px;
-    width: 200px; 
+    width: 200px;
     margin-left: auto;
     margin-right: auto;
     border: 5px solid yellow;
@@ -68,20 +69,22 @@
     background-clip: padding-box, border-box;
 }
 
-.user-score > h4 {
+.user-score>h4 {
     color: blue;
 }
 
-.computer-score > h4 {
+.computer-score>h4 {
     color: red;
 }
+
 .card-container {
     display: flex;
     justify-content: center;
     column-gap: 100px;
 }
+
 .card {
-    margin-top: 50px;
+    margin-top: 100px;
     padding: 10px;
     color: black;
     border-radius: 10px;
@@ -97,7 +100,7 @@
     padding: 5px;
 }
 
-.info-user{
+.info-user {
     background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgb(229, 255, 0) 50%) right;
     background-size: 200%;
     transition: .2s ease-out;
@@ -119,6 +122,7 @@
     width: 257px;
     height: 100px;
 }
+
 span {
     float: right;
 }
@@ -131,16 +135,34 @@ span {
     background-color: rgba(255, 0, 0, 0.800);
 }
 
-/* Thêm keyframe animation cho hiệu ứng rung */
 @keyframes shake {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5px, -5px); }
-    20% { transform: translate(5px, 5px); }
-    30% { transform: translate(-5px, 5px); }
-    40% { transform: translate(5px, -5px); }
-    50% { transform: translate(0, 0); }
-  }
-  .shake {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-5px, -5px);
+    }
+
+    20% {
+        transform: translate(5px, 5px);
+    }
+
+    30% {
+        transform: translate(-5px, 5px);
+    }
+
+    40% {
+        transform: translate(5px, -5px);
+    }
+
+    50% {
+        transform: translate(0, 0);
+    }
+}
+
+.shake {
     animation: shake 0.4s ease-in-out;
-  }
-  
+}
