@@ -139,27 +139,27 @@ span {
 
     0%,
     100% {
-        transform: translate(0, 0);
+        transform: translateX(0);
     }
 
     10% {
-        transform: translate(-5px, -5px);
+        transform: translateX(-5px);
     }
 
     20% {
-        transform: translate(5px, 5px);
+        transform: translateX(5px);
     }
 
     30% {
-        transform: translate(-5px, 5px);
+        transform: translateX(-5px);
     }
 
     40% {
-        transform: translate(5px, -5px);
+        transform: translateX(5px);
     }
 
     50% {
-        transform: translate(0, 0);
+        transform: translateX(0);
     }
 }
 
