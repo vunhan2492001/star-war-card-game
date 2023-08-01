@@ -103,7 +103,7 @@
 .info-user {
     background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgb(229, 255, 0) 50%) right;
     background-size: 200%;
-    transition: .2s ease-out;
+    transition: .1s ease-out;
 }
 
 .info-user:hover {
