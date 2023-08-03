@@ -4,13 +4,14 @@ import * as Yup from 'yup';
 import './index.css';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 interface FormData {
     username: string;
     gender: string;
 }
 
 const UserForm = () => {
+    const navigate = useNavigate();
     const initialValues: FormData = {
         username: '',
         gender: '',
@@ -23,6 +24,7 @@ const UserForm = () => {
 
     const handleSubmit = (values: FormData) => {
         console.log('Form data submitted:', values);
+        navigate('/game');
     };
 
     return (
@@ -55,7 +57,7 @@ const UserForm = () => {
                         </label>
                     </div>
                     <div className="form-field">
-                        <Button type='submit' variant="danger"><Link to={'/game'}>Play</Link></Button>{' '}
+                        <Button type='submit' variant="danger">Play</Button>{' '}
                     </div>
                 </div>
 

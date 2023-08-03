@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 // import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./screens/Home/index";
 import UserForm from "./screens/Welcome";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,20 +12,15 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const router = createBrowserRouter([
-  {
-    path: "/welcome",
-    element: <UserForm />,
-    errorElement: <h1>Error</h1>,
-  },
-  {
-    path: "/game",
-    element: <Home />
-  }
-]);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/welcome" />} />
+        <Route path="/welcome" element={<UserForm />} />
+        <Route path="/game" element={<Home />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
