@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./screens/Home/index";
 import UserForm from "./screens/Welcome";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,11 +14,14 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/user-form",
     element: <UserForm />,
     errorElement: <h1>Error</h1>,
-    children: [],
   },
+  {
+    path: "/game",
+    element: <Home />
+  }
 ]);
 root.render(
   <React.StrictMode>

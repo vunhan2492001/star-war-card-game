@@ -5,7 +5,7 @@
     font-size: 100%;
 }
 
-.container {
+.my-home-container {
     position: relative;
     height: 100vh;
     width: 100%;
@@ -16,27 +16,37 @@
     background-size: cover;
 }
 
-.logo-class {
+.my-logo-class {
     position: absolute;
     top: 8%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.logo {
+.my-logo {
     width: 150px;
     margin-bottom: 30px;
 }
 
-.info-score {
+.my-info-score {
     display: flex;
     justify-content: space-around;
     padding: 10px;
 }
 
-.user {
+.my-user-score>h4 {
+    font-size: 20px;
+    color: blue;
+}
+
+.my-computer-score>h4 {
+    font-size: 20px;
+    color: red;
+}
+
+.my-user {
     padding: 10px;
-    width: 100px;
+    width: 150px;
     border: 5px solid blue;
     color: black;
     text-align: center;
@@ -44,9 +54,9 @@
     background-color: yellow;
 }
 
-.computer {
+.my-computer {
     padding: 10px;
-    width: 100px;
+    width: 150px;
     border: 5px solid red;
     color: black;
     text-align: center;
@@ -54,7 +64,7 @@
     background-color: yellow;
 }
 
-.round {
+.my-round {
     text-align: center;
     margin-top: 50px;
     padding: 10px;
@@ -69,30 +79,38 @@
     background-clip: padding-box, border-box;
 }
 
-.user-score>h4 {
-    color: blue;
+.my-round-title>h3 {
+    font-size: 20px;
 }
 
-.computer-score>h4 {
-    color: red;
+.my-round-count>h4 {
+    font-size: 15px;
+    font-weight: bold;
+    color: yellow;
 }
 
-.card-container {
+.my-computer-name>h3,
+.my-user-name>h3 {
+    font-size: 20px;
+}
+
+.my-card-container {
     display: flex;
     justify-content: center;
-    column-gap: 100px;
+    gap: 100px;
 }
 
-.card {
+.my-card {
     margin-top: 100px;
     padding: 10px;
     color: black;
     border-radius: 10px;
     width: 300px;
     border: 5px solid yellow;
+    font-weight: bold;
 }
 
-.info {
+.my-info {
     /* border: 1px solid white; */
     background-color: white;
     border-radius: 10px;
@@ -100,26 +118,25 @@
     padding: 5px;
 }
 
-.info-user {
+.my-info-user {
     background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgb(229, 255, 0) 50%) right;
     background-size: 200%;
-    transition: .2s ease-out;
+    transition: .1s ease-out;
+    cursor: pointer;
 }
 
-.info-user:hover {
+.my-info-user:hover {
     /* background-color: rgba(255, 255, 0, 0.881); */
     background-position: left;
 }
 
-.info-user-name,
-.info-computer-name {
+.my-info-user-name,
+.my-info-computer-name {
     text-align: center;
 }
 
 
-.info-img {
-    height: 100px;
-    width: 257px;
+.my-info-img {
     height: 100px;
 }
 
@@ -127,42 +144,73 @@ span {
     float: right;
 }
 
-.card-user {
+.my-card-user {
     background-color: rgba(0, 0, 255, 0.800);
 }
 
-.card-computer {
+.my-card-computer {
     background-color: rgba(255, 0, 0, 0.800);
 }
 
-@keyframes shake {
+@keyframes my-shake {
 
     0%,
     100% {
-        transform: translate(0, 0);
+        transform: translateX(0);
     }
 
     10% {
-        transform: translate(-5px, -5px);
+        transform: translateX(-5px);
     }
 
     20% {
-        transform: translate(5px, 5px);
+        transform: translateX(5px);
     }
 
     30% {
-        transform: translate(-5px, 5px);
+        transform: translateX(-5px);
     }
 
     40% {
-        transform: translate(5px, -5px);
+        transform: translateX(5px);
     }
 
     50% {
-        transform: translate(0, 0);
+        transform: translateX(0);
     }
 }
 
-.shake {
-    animation: shake 0.4s ease-in-out;
+.my-shake {
+    animation: my-shake 0.4s ease-in-out;
+}
+
+@media screen and (max-width: 1000px) {
+    .my-home-container {
+        height: 100%;
+    }
+
+    .my-info-score {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .my-user,
+    .my-computer {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .my-card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .my-card {
+        align-items: center;
+        width: 120%;
+    }
+
+    .my-logo-class {
+        display: none;
+    }
 }
