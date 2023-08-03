@@ -127,6 +127,7 @@
 .my-info-user:hover {
     /* background-color: rgba(255, 255, 0, 0.881); */
     background-position: left;
+    cursor: pointer;
 }
 
 .my-info-user-name,
