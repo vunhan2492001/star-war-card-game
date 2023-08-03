@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: "/user-form",
+    path: "/welcome",
     element: <UserForm />,
     errorElement: <h1>Error</h1>,
   },

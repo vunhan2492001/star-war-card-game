@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/games');
+
 .form {
     background-image: url(https://wallpaperaccess.com/full/2724260.jpg);
     background-size: cover;
@@ -13,25 +15,41 @@
 .header {
     text-align: center;
     padding: 40px;
-    color: red;
+    color: yellow;
+    font-size: 60px;
+    font-family: 'Games', sans-serif;
 }
 
-.container {
-
-    background-position: 50%;
+.my-user-container {
+    width: 400px;
+    background-position: 20%;
     background-size: 200px auto;
     background-color: rgba(255, 255, 255, 0.4);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    /* Căn giữa nội dung của form */
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 17px;
 
 }
+
+
+
+.name {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.my-user-select {
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+
+}
+
 
 .error {
     color: red;
@@ -39,6 +57,10 @@
 }
 
 .form-field {
-    margin-bottom: 15px;
-    /* Khoảng cách giữa các dòng trong form */
+    margin-bottom: 13px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
 }

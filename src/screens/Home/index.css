@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/retro-groove');
+
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +16,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Retro Groove', sans-serif;
+
+
 }
 
 .my-logo-class {
@@ -85,7 +90,6 @@
 
 .my-round-count>h4 {
     font-size: 15px;
-    font-weight: bold;
     color: yellow;
 }
 
@@ -107,7 +111,6 @@
     border-radius: 10px;
     width: 300px;
     border: 5px solid yellow;
-    font-weight: bold;
 }
 
 .my-info {
@@ -121,7 +124,7 @@
 .my-info-user {
     background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgb(229, 255, 0) 50%) right;
     background-size: 200%;
-    transition: .2s ease-out;
+    transition: .1s ease-out;
 }
 
 .my-info-user:hover {
@@ -184,7 +187,7 @@ span {
     animation: my-shake 0.4s ease-in-out;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
     .my-home-container {
         height: 100%;
     }
@@ -207,7 +210,7 @@ span {
 
     .my-card {
         align-items: center;
-        width: 120%;
+        width: 110%;
     }
 
     .my-logo-class {

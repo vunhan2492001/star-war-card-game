@@ -3,7 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './index.css';
 import Button from 'react-bootstrap/Button';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 interface FormData {
     username: string;
     gender: string;
@@ -32,19 +33,19 @@ const UserForm = () => {
 
         >
             <Form className='form'>
-                <h1 className='header'>Welcome to The Start Wars</h1>
-                <div className='container'>
+                <h1 className='header'>Welcome to The Star Wars</h1>
+                <div className='my-user-container'>
                     <div className="form-field">
-                        <label>
-                            Username:
-                            <Field type="text" name="username" />
-                            <ErrorMessage name="username" component="div" className="error" />
-                        </label>
+
+                        {/* Sử dụng Field thay cho input */}
+                        <Field className="name" type="text" id="name" name="username" placeholder="Enter your name" required />
+                        {/* Sử dụng ErrorMessage thay cho div */}
+                        <ErrorMessage name="username" component="div" className="error" />
+
                     </div>
                     <div className="form-field">
-                        <label>
-                            Gender:
-                            <Field as="select" name="gender">
+                        <label >
+                            <Field className='my-user-select' as="select" name="gender">
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -54,7 +55,7 @@ const UserForm = () => {
                         </label>
                     </div>
                     <div className="form-field">
-                        <Button type='submit' variant="danger">Submit</Button>{' '}
+                        <Button type='submit' variant="danger"><Link to={'/game'}>Play</Link></Button>{' '}
                     </div>
                 </div>
 
