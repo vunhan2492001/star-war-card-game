@@ -5,13 +5,23 @@ import Round from "./Round";
 
 const Home = () => {
 
-
   const handleCardUserClick = () => {
     console.log("Clicked!");
 
   };
+
+  // const handlePlayMusic = () => {
+  //   const audioElement = document.getElementById('background-music') as HTMLAudioElement;
+  //   audioElement.play();
+  //   setIsMusicPlaying(true);
+  // };
+
   return (
     <div className="my-home-container">
+      {/* <audio id="background-music" loop>
+        <source src="./sound/home.mp3" type="audio/mpeg" />
+      </audio>
+      {!isMusicPlaying && <button onClick={handlePlayMusic}>Play Music</button>} */}
       <div className="my-logo-class">
         <img
           className="my-logo"
