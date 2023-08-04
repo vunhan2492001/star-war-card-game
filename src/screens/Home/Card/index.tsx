@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Card = ({ type, onClick, clickable }: any) => {
-    const handleCardClick = () => {
-        if (clickable) {
-            onClick();
-        }
-    };
+interface CardProps {
+  type: string;
+  onClick?: () => void;
+  clickable: boolean;
+}
 
-    return (
-        <div
-            className={`my-card my-card-${type}`}
-            onClick={handleCardClick}
-        >
-            <div className={`my-info my-info-${type}-name`}>Name</div>
-            <div className={`my-info my-info-img my-info-img-${type}`}>
-                <img src="" alt="" />
-            </div>
-            <div className={`my-info my-info-${type}`}>Maximum speed<span>?</span></div>
-            <div className={`my-info my-info-${type}`}>Cost in credits<span>?</span></div>
-            <div className={`my-info my-info-${type}`}>Number of passengers<span>?</span></div>
-            <div className={`my-info my-info-${type}`}>Films<span>?</span></div>
+const Card = ({ type, onClick, clickable }: CardProps) => {
+  const handleCardClick = () => {
+    if (clickable && onClick) {
+      onClick();
+    }
+  };
+
+  const infoData = [
+    "Maximum speed",
+    "Cost in credits",
+    "Number of passengers",
+    "Films",
+  ];
+
+  return (
+    <div className={`my-card my-card-${type}`} onClick={handleCardClick}>
+      <div className={`my-info my-info-${type}-name`}>Name</div>
+      <div className={`my-info my-info-img my-info-img-${type}`}>
+        <img src="" alt="" />
+      </div>
+      {infoData.map((info, index) => (
+        <div key={index} className={`my-info my-info-${type}`}>
+          {info}
+          <span>?</span>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default Card;
