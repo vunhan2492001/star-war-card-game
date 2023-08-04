@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./index.css";
-import Computer from "./Computer_card";
-import User from "./User_card";
+import Card from "./Card";
+import Round from "./Round";
 
 const Home = () => {
-  const [isComputerShaking, setIsComputerShaking] = useState(false);
+
 
   const handleCardUserClick = () => {
-    setIsComputerShaking(true);
-    setTimeout(() => setIsComputerShaking(false), 500);
+    console.log("Clicked!");
+
   };
   return (
     <div className="my-home-container">
@@ -37,21 +37,10 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="my-round">
-        <div className="my-round-title">
-          <h3>Round</h3>
-        </div>
-        <div className="my-round-count">
-          <h4>8/10</h4>
-        </div>
-      </div>
+      <Round title="Round" count="8" />
       <div className="my-card-container">
-        <div>
-          <User onClick={handleCardUserClick} />
-        </div>
-        <div>
-          <Computer isShaking={isComputerShaking} />
-        </div>
+        <Card type="user" onClick={handleCardUserClick} clickable={true} />
+        <Card type="computer" clickable={false} />
       </div>
     </div>
   );

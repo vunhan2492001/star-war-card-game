@@ -35,7 +35,7 @@ const UserForm = () => {
 
         >
             <Form className='form'>
-                <h1 className='header'>Welcome to The Star Wars Thuc Khue</h1>
+                <h1 className='header'>Welcome to The Star Wars</h1>
                 <div className='my-user-container'>
                     <div className="form-field">
 
