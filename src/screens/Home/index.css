@@ -26,6 +26,7 @@
     top: 8%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-top: 5%;
 }
 
 .my-logo {
@@ -57,6 +58,7 @@
     text-align: center;
     border-radius: 10px;
     background-color: yellow;
+    margin-top: 5%;
 }
 
 .my-computer {
@@ -67,6 +69,7 @@
     text-align: center;
     border-radius: 10px;
     background-color: yellow;
+    margin-top: 5%;
 }
 
 .my-round {
