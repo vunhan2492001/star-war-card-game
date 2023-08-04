@@ -155,38 +155,6 @@ span {
     background-color: rgba(255, 0, 0, 0.800);
 }
 
-@keyframes my-shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    10% {
-        transform: translateX(-5px);
-    }
-
-    20% {
-        transform: translateX(5px);
-    }
-
-    30% {
-        transform: translateX(-5px);
-    }
-
-    40% {
-        transform: translateX(5px);
-    }
-
-    50% {
-        transform: translateX(0);
-    }
-}
-
-.my-shake {
-    animation: my-shake 0.4s ease-in-out;
-}
-
 @media screen and (max-width: 800px) {
     .my-home-container {
         height: 100%;
