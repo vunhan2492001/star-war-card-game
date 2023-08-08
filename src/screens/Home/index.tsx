@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./index.css";
 import Card from "./Card";
 import Round from "./Round";
 
-
 const Home = () => {
-
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const location = useLocation();
+  const username = location.state?.username || "User";
 
   const handleCardUserClick = () => {
     console.log("Clicked!");
-
   };
 
   const handlePlayMusic = () => {
-    const audioElement = document.getElementById('background-music') as HTMLAudioElement;
+    const audioElement = document.getElementById(
+      "background-music"
+    ) as HTMLAudioElement;
     console.log(audioElement);
     audioElement.play();
     setIsMusicPlaying(true);
@@ -36,7 +38,7 @@ const Home = () => {
       <div className="my-info-score">
         <div className="my-user">
           <div className="my-name my-user-name">
-            <h3>User</h3>
+            <h3>{username}</h3>
           </div>
           <div className="my-score my-user-score">
             <h4>100</h4>
