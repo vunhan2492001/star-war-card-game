@@ -22,33 +22,33 @@ interface CardProps {
 
 const Card = ({ type, onClick, clickable }: CardProps) => {
   const [starShipData, setStarShipData] = useState<StarShipData | null>(null);
-  const [otherCardData, setOtherCardData] = useState<StarShipData | null>(null);
+  const [usedIds, setUsedIds] = useState<number[]>([]);
+
+  const ids = [
+    2, 3, 5, 9, 10, 11, 12, 13, 17, 22, 27, 28, 31, 32, 39, 40, 43, 59, 66, 68,
+  ];
 
   useEffect(() => {
     getRandomStarShip();
   }, []);
 
-  useEffect(() => {
-    if (starShipData && otherCardData) {
-      // Both card data have been loaded, you can proceed here
-      console.log("Both card data loaded:", starShipData, otherCardData);
-    }
-  }, [starShipData, otherCardData]);
-
   const getRandomStarShip = async () => {
     try {
-      let starShipResponse = null;
-      let randomStarShipId = null;
-
-      while (!starShipResponse) {
-        randomStarShipId = Math.floor(Math.random() * 40) + 1;
-        starShipResponse = await axiosInstance.get(`/${randomStarShipId}`);
-      }
-
+      let randomId = getRandomUniqueId();
+      const starShipResponse = await axiosInstance.get(`/${randomId}`);
       setStarShipData(starShipResponse.data);
+      setUsedIds([...usedIds, randomId]);
     } catch (error) {
-      console.log("Error fetching random starship:", error);
+      console.error("Error fetching random starship:", error);
     }
+  };
+
+  const getRandomUniqueId = () => {
+    let randomId = ids[Math.floor(Math.random() * ids.length)];
+    while (usedIds.includes(randomId)) {
+      randomId = ids[Math.floor(Math.random() * ids.length)];
+    }
+    return randomId;
   };
 
   const handleCardClick = () => {
@@ -60,16 +60,16 @@ const Card = ({ type, onClick, clickable }: CardProps) => {
   const infoData: InfoData[] = [
     {
       label: "Max Speed",
-      value: starShipData?.max_atmosphering_speed || "",
+      value: starShipData?.max_atmosphering_speed || "Loading...",
     },
     {
       label: "Credit Cost",
-      value: starShipData?.cost_in_credits || "",
+      value: starShipData?.cost_in_credits || "Loading...",
     },
-    { label: "Passenger", value: starShipData?.passengers || "" },
+    { label: "Passenger", value: starShipData?.passengers || "Loading..." },
     {
       label: "Film Appearances",
-      value: starShipData?.films.length.toString() || "",
+      value: starShipData?.films.length.toString() || "Loading...",
     },
   ];
 
