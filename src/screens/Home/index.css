@@ -144,7 +144,14 @@
 }
 
 .my-info-img {
+  position: relative;
   height: 100px;
+}
+.my-img{
+  position: absolute;
+  height: 90px;
+  width: 190px;
+  padding-left: 40px ;
 }
 
 span {
