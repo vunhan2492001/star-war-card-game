@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import "./index.css";
 import Card from "./Card";
 import Round from "./Round";
-
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import music from '../Assets/sound/home.mp3'
 const Home = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const location = useLocation();
   const username = location.state?.username || "User";
 
@@ -14,20 +16,36 @@ const Home = () => {
   };
 
   const handlePlayMusic = () => {
-    const audioElement = document.getElementById(
-      "background-music"
-    ) as HTMLAudioElement;
-    console.log(audioElement);
-    audioElement.play();
-    setIsMusicPlaying(true);
-  };
+    if (audioRef.current) {
+      if (audioRef.current.paused) {
+        audioRef.current.play();
+        console.log('played');
+        setIsMusicPlaying(true);
+      } else {
+        audioRef.current.pause();
+        console.log('paused');
+        setIsMusicPlaying(false);
+      }
+    }
+  }
+
+
+  // const handlePlayMusic = () => {
+  //   const audioElement = document.getElementById(
+  //     "background-music"
+  //   ) as HTMLAudioElement;
+  //   console.log(audioElement);
+  //   audioElement.play();
+  //   setIsMusicPlaying(true);
+  // };
 
   return (
     <div className="my-home-container">
-      <audio id="background-music" loop>
-        <source src="./sound/home.mp3" type="audio/mpeg" />
+      <audio ref={audioRef} loop autoPlay>
+        <source src={music} type='audio/mp3' />
       </audio>
-      <button onClick={handlePlayMusic}>Play Music</button>
+      <button onClick={handlePlayMusic}>
+        {isMusicPlaying ? <FaVolumeUp /> : <FaVolumeMute />}</button>{''}
       <div className="my-logo-class">
         <img
           className="my-logo"
