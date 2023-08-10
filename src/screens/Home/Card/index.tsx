@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../service";
-import myPic from "../../../images/tau2.png"
+import myPic from "../../../images/tau2.png";
 interface InfoData {
   label: string;
   value: string;
@@ -79,13 +79,12 @@ const Card = ({ type, onClick, clickable }: CardProps) => {
         {starShipData?.name || "Loading..."}
       </div>
       <div className={`my-info my-info-img my-info-img-${type}`}>
-        <img className="my-img" src= {myPic} alt="Image of Starship" />
-
+        <img className="my-img" src={myPic} alt="Image of Starship" />
       </div>
       {infoData.map((info, index) => (
         <div key={index} className={`my-info my-info-${type}`}>
           {info.label}
-          <span>{info.value}</span>
+          <span>{clickable ? info.value : "?"}</span>
         </div>
       ))}
     </div>
