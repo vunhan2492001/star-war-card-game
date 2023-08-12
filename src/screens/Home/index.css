@@ -147,11 +147,11 @@
   position: relative;
   height: 100px;
 }
-.my-img{
+.my-img {
   position: absolute;
   height: 90px;
-  width: 190px;
-  padding-left: 40px ;
+  width: 231px;
+  border-radius: 10px;
 }
 
 span {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../service";
-import myPic from "../../../images/tau2.png";
+
 interface InfoData {
   label: string;
   value: string;
@@ -18,11 +18,26 @@ interface CardProps {
   type: string;
   onClick?: () => void;
   clickable: boolean;
+  clickedItems: number[];
+  onClickItem?: (id: number) => void;
 }
 
-const Card = ({ type, onClick, clickable }: CardProps) => {
+const Card = ({
+  type,
+  onClick,
+  clickable,
+  clickedItems,
+  onClickItem,
+}: CardProps) => {
   const [starShipData, setStarShipData] = useState<StarShipData | null>(null);
   const [usedIds, setUsedIds] = useState<number[]>([]);
+  const [imageIndex, setImageIndex] = useState<number>(0); // Index for selecting random image
+  const [images, setImages] = useState<string[]>([
+    require("../../../images/tau.png"),
+    require("../../../images/tau1.png"),
+    require("../../../images/tau2.png"),
+    require("../../../images/tau3.png"),
+  ]); // List of image paths
 
   const ids = [
     2, 3, 5, 9, 10, 11, 12, 13, 17, 22, 27, 28, 31, 32, 39, 40, 43, 59, 66, 68,
@@ -38,6 +53,7 @@ const Card = ({ type, onClick, clickable }: CardProps) => {
       const starShipResponse = await axiosInstance.get(`/${randomId}`);
       setStarShipData(starShipResponse.data);
       setUsedIds([...usedIds, randomId]);
+      setImageIndex(getRandomImageIndex());
     } catch (error) {
       console.error("Error fetching random starship:", error);
     }
@@ -49,6 +65,10 @@ const Card = ({ type, onClick, clickable }: CardProps) => {
       randomId = ids[Math.floor(Math.random() * ids.length)];
     }
     return randomId;
+  };
+
+  const getRandomImageIndex = () => {
+    return Math.floor(Math.random() * images.length);
   };
 
   const handleCardClick = () => {
@@ -79,12 +99,27 @@ const Card = ({ type, onClick, clickable }: CardProps) => {
         {starShipData?.name || "Loading..."}
       </div>
       <div className={`my-info my-info-img my-info-img-${type}`}>
-        <img className="my-img" src={myPic} alt="Image of Starship" />
+        <img
+          className="my-img"
+          src={images[imageIndex]}
+          alt="Image of Starship"
+        />
       </div>
       {infoData.map((info, index) => (
-        <div key={index} className={`my-info my-info-${type}`}>
+        <div
+          key={index}
+          className={`my-info my-info-${type}`}
+          onClick={() => onClickItem && onClickItem(index)}
+        >
           {info.label}
-          <span>{clickable ? info.value : "?"}</span>
+          {clickable || clickedItems.includes(index) ? (
+            <>
+              {" "}
+              <span>{info.value}</span>
+            </>
+          ) : (
+            <span>?</span>
+          )}
         </div>
       ))}
     </div>
