@@ -11,6 +11,11 @@ const Home = () => {
   const location = useLocation();
   const username = location.state?.username || "User";
   const [clickedItems, setClickedItems] = useState<number[]>([]);
+  //state for scores
+  const [userScore, setUserScore]= useState(0);
+  const [computerScore, setComputerScore]= useState(0);
+  // state for count
+  const [createCount, setCreateCount]=useState(0);
 
   const handleCardUserClick = () => {
     console.log("Clicked!");
@@ -61,7 +66,7 @@ const Home = () => {
             <h3>{username}</h3>
           </div>
           <div className="my-score my-user-score">
-            <h4>100</h4>
+            <h4>{userScore}</h4>
           </div>
         </div>
         <div className="my-computer">
@@ -69,11 +74,11 @@ const Home = () => {
             <h3>Computer</h3>
           </div>
           <div className="my-score my-computer-score">
-            <h4>100</h4>
+            <h4>{computerScore}</h4>
           </div>
         </div>
       </div>
-      <Round title="Round" count="8" />
+      <Round title="Round" count="{createCount}" />
       <div className="my-card-container">
         <Card
           type="user"
