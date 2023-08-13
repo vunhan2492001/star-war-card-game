@@ -78,7 +78,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Round title="Round" count={createCount} />
+      <Round count={createCount} />
       <div className="my-card-container">
         <Card
           type="user"
