@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axiosInstance from "../../../service";
+import React from "react";
+import { useState } from "react";
 
 interface InfoData {
   label: string;
@@ -20,6 +20,7 @@ interface CardProps {
   clickable: boolean;
   clickedItems: number[];
   onClickItem?: (id: number) => void;
+  starShipData: StarShipData | null;
 }
 
 const Card = ({
@@ -28,9 +29,8 @@ const Card = ({
   clickable,
   clickedItems,
   onClickItem,
+  starShipData,
 }: CardProps) => {
-  const [starShipData, setStarShipData] = useState<StarShipData | null>(null);
-  const [usedIds, setUsedIds] = useState<number[]>([]);
   const [imageIndex, setImageIndex] = useState<number>(0); // Index for selecting random image
   const [images, setImages] = useState<string[]>([
     require("../../../images/tau.png"),
@@ -38,38 +38,6 @@ const Card = ({
     require("../../../images/tau2.png"),
     require("../../../images/tau3.png"),
   ]); // List of image paths
-
-  const ids = [
-    2, 3, 5, 9, 10, 11, 12, 13, 17, 22, 27, 28, 31, 32, 39, 40, 43, 59, 66, 68,
-  ];
-
-  useEffect(() => {
-    getRandomStarShip();
-  }, []);
-
-  const getRandomStarShip = async () => {
-    try {
-      let randomId = getRandomUniqueId();
-      const starShipResponse = await axiosInstance.get(`/${randomId}`);
-      setStarShipData(starShipResponse.data);
-      setUsedIds([...usedIds, randomId]);
-      setImageIndex(getRandomImageIndex());
-    } catch (error) {
-      console.error("Error fetching random starship:", error);
-    }
-  };
-
-  const getRandomUniqueId = () => {
-    let randomId = ids[Math.floor(Math.random() * ids.length)];
-    while (usedIds.includes(randomId)) {
-      randomId = ids[Math.floor(Math.random() * ids.length)];
-    }
-    return randomId;
-  };
-
-  const getRandomImageIndex = () => {
-    return Math.floor(Math.random() * images.length);
-  };
 
   const handleCardClick = () => {
     if (clickable && onClick) {
