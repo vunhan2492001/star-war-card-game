@@ -5,6 +5,18 @@ import Card from "./Card";
 import Round from "./Round";
 import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import music from "../Assets/sound/home.mp3";
+import axiosInstance from "../../service";
+import { useEffect } from "react";
+
+
+interface StarShipData {
+  name: string;
+  max_atmosphering_speed: string;
+  cost_in_credits: string;
+  passengers: string;
+  films: string[];
+}
+
 const Home = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -16,6 +28,37 @@ const Home = () => {
   const [computerScore, setComputerScore] = useState(0);
   // state for count
   const [createCount, setCreateCount] = useState<number>(0);
+  const [starShipData, setStarShipData] = useState<[StarShipData | null, StarShipData | null]>([null, null]);
+  const [usedIds, setUsedIds] = useState<number[]>([]);
+
+  const ids = [
+    2, 3, 5, 9, 10, 11, 12, 13, 17, 22, 27, 28, 31, 32, 39, 40, 43, 59, 66, 68,
+  ];
+
+  useEffect(() => {
+    getRandomStarShips();
+  }, []);
+
+  const getRandomStarShips = async () => {
+    try {
+      let randomId1 = getRandomUniqueId();
+      let randomId2 = getRandomUniqueId();
+      const starShipResponse1 = await axiosInstance.get(`/${randomId1}`);
+      const starShipResponse2 = await axiosInstance.get(`/${randomId2}`);
+      setStarShipData([starShipResponse1.data, starShipResponse2.data]);
+      setUsedIds([...usedIds, randomId1, randomId2]);
+    } catch (error) {
+      console.error("Error fetching random starships:", error);
+    }
+  };
+
+  const getRandomUniqueId = () => {
+    let randomId = ids[Math.floor(Math.random() * ids.length)];
+    while (usedIds.includes(randomId)) {
+      randomId = ids[Math.floor(Math.random() * ids.length)];
+    }
+    return randomId;
+  };
 
   const handleCardUserClick = () => {
     console.log("Clicked!");
@@ -34,15 +77,6 @@ const Home = () => {
       }
     }
   };
-
-  // const handlePlayMusic = () => {
-  //   const audioElement = document.getElementById(
-  //     "background-music"
-  //   ) as HTMLAudioElement;
-  //   console.log(audioElement);
-  //   audioElement.play();
-  //   setIsMusicPlaying(true);
-  // };
 
   return (
     <div className="my-home-container">
@@ -86,8 +120,9 @@ const Home = () => {
           clickable={true}
           clickedItems={clickedItems}
           onClickItem={(id) => setClickedItems((prev) => [...prev, id])}
+          starShipData={starShipData[0]}
         />
-        <Card type="computer" clickable={false} clickedItems={clickedItems} />
+        <Card type="computer" clickable={false} clickedItems={clickedItems} starShipData={starShipData[1]} />
       </div>
     </div>
   );
