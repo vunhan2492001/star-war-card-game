@@ -2,4 +2,4 @@
 - Frameworks: ReactJs
 - Language: TypeScript, CSS, HTML
 - UI is maked by Antd, React-Bootstrap
-- Call API using data from https://swapi.dev/api/starships ( Rest)
+- Call API by Axios from https://swapi.dev/api/starships ( Rest)
