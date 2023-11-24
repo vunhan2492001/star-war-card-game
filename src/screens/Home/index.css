@@ -50,7 +50,7 @@
 
 .my-user {
   padding: 10px;
-  width: 150px;
+  width: 200px;
   border: 5px solid blue;
   color: black;
   text-align: center;
@@ -61,7 +61,7 @@
 
 .my-computer {
   padding: 10px;
-  width: 150px;
+  width:200px;
   border: 5px solid red;
   color: black;
   text-align: center;
@@ -82,6 +82,41 @@
   background-image: linear-gradient(to right, #0015ff, #ff0000);
   background-origin: border-box;
   background-clip: padding-box, border-box;
+}
+
+.next-btn-container{
+  margin-top: 20px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-btn.btn{
+  /* padding: 1.3em 3em; */
+  font-size: 17px;
+  width: 200px;
+  height: 60px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 900;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+Button:hover.next-btn.btn{
+  background-color: rgb(37, 250, 0);;
+  box-shadow: 0px 15px 20px rgba(37, 250, 0, 0.947);
+  color: #fff;
+  transform: translateY(-7px);
+}
+Button:active.next-btn.btn{
+  transform: translateY(-1px);
 }
 
 .my-round-title > h3 {
@@ -197,4 +232,25 @@ span {
   .my-logo-class {
     display: none;
   }
+}
+
+.notify-header{
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgb(16, 137, 211);
+}
+
+.new-game-btn{
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+  color: white;
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
 }

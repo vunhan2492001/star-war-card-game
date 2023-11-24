@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-interface InfoData {
+export interface InfoData {
   label: string;
   value: string;
 }
@@ -16,11 +16,12 @@ interface StarShipData {
 
 interface CardProps {
   type: string;
-  onClick?: () => void;
   clickable: boolean;
   clickedItems: number[];
+  onClick?: (data: number[]) => void;
   onClickItem?: (id: number) => void;
   starShipData: StarShipData | null;
+  isItemClicked: (data:number)=> void;
 }
 
 const Card = ({
@@ -30,6 +31,7 @@ const Card = ({
   clickedItems,
   onClickItem,
   starShipData,
+  isItemClicked,
 }: CardProps) => {
   const [imageIndex, setImageIndex] = useState<number>(0); // Index for selecting random image
   const [images, setImages] = useState<string[]>([
@@ -38,13 +40,19 @@ const Card = ({
     require("../../../images/tau2.png"),
     require("../../../images/tau3.png"),
   ]); // List of image paths
-
+  const [dataToShow,setDataToShow]= useState<number[]>(clickedItems);
   const handleCardClick = () => {
     if (clickable && onClick) {
-      onClick();
+      // onClick(dataToShow);
+      console.log(clickable)
     }
   };
-
+  const isItemClickedCheck = (index:number) => {
+    if (clickable && onClick) {
+      isItemClicked(index);
+      console.log(index)
+    }
+  };
   const infoData: InfoData[] = [
     {
       label: "Max Speed",
@@ -60,7 +68,6 @@ const Card = ({
       value: starShipData?.films.length.toString() || "Loading...",
     },
   ];
-
   return (
     <div className={`my-card my-card-${type}`} onClick={handleCardClick}>
       <div className={`my-info my-info-${type}-name`}>
@@ -77,12 +84,11 @@ const Card = ({
         <div
           key={index}
           className={`my-info my-info-${type}`}
-          onClick={() => onClickItem && onClickItem(index)}
+          onClick={() => {onClickItem && onClickItem(index); isItemClickedCheck(index) }}
         >
           {info.label}
           {clickable || clickedItems.includes(index) ? (
             <>
-              {" "}
               <span>{info.value}</span>
             </>
           ) : (

@@ -7,6 +7,8 @@ import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import music from "../Assets/sound/home.mp3";
 import axiosInstance from "../../service";
 import { useEffect } from "react";
+import Button from "react-bootstrap/esm/Button";
+import Modal from "antd/es/modal/Modal";
 
 
 interface StarShipData {
@@ -23,11 +25,12 @@ const Home = () => {
   const location = useLocation();
   const username = location.state?.username || "User";
   const [clickedItems, setClickedItems] = useState<number[]>([]);
+  const [isFinish, setIsFinish] = useState(false);
   //state for scores
   const [userScore, setUserScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   // state for count
-  const [createCount, setCreateCount] = useState<number>(0);
+  const [createCount, setCreateCount] = useState<number>(1);
   const [starShipData, setStarShipData] = useState<[StarShipData | null, StarShipData | null]>([null, null]);
   const [usedIds, setUsedIds] = useState<number[]>([]);
 
@@ -60,23 +63,97 @@ const Home = () => {
     return randomId;
   };
 
-  const handleCardUserClick = () => {
-    console.log("Clicked!");
+  const handleCardUserClick = (data:number[]) => {
   };
-
+  const handleCardItemClick=(data:number) =>{
+    if(starShipData[0] && starShipData[1] ){
+      if(starShipData[0].max_atmosphering_speed==='unknown' || starShipData[0].max_atmosphering_speed==='n/a')
+        {
+          starShipData[0].max_atmosphering_speed='0';
+        }
+        if(starShipData[0].cost_in_credits==='unknown' || starShipData[0].cost_in_credits==='n/a')
+        {
+          starShipData[0].cost_in_credits='0';
+        }
+        if(starShipData[0].passengers==='unknown' || starShipData[0].passengers==='n/a')
+        {
+          starShipData[0].passengers='0';
+        }
+        if(starShipData[1].max_atmosphering_speed==='unknown' || starShipData[1].max_atmosphering_speed==='n/a')
+        {
+          starShipData[1].max_atmosphering_speed='0';
+        }
+        if(starShipData[1].cost_in_credits==='unknown' || starShipData[1].cost_in_credits==='n/a')
+        {
+          starShipData[1].cost_in_credits='0';
+        }
+        if(starShipData[1].passengers==='unknown' || starShipData[1].passengers==='n/a')
+        {
+          starShipData[1].passengers='0';
+        }
+      if(data==0){
+        if(parseInt(starShipData[0].max_atmosphering_speed)>parseInt(starShipData[1].max_atmosphering_speed)){
+          setUserScore(userScore+1);
+        }
+        else if (parseInt(starShipData[1].max_atmosphering_speed)>parseInt(starShipData[0].max_atmosphering_speed)){
+          setComputerScore(computerScore+1);
+        }
+      }
+      if(data==1){
+        if(parseInt(starShipData[0].cost_in_credits)>parseInt(starShipData[1].cost_in_credits)){
+          setUserScore(userScore+1);
+        }
+        else if (parseInt(starShipData[1].cost_in_credits)>parseInt(starShipData[0].cost_in_credits)){
+          setComputerScore(computerScore+1);
+        }
+      }
+      if(data==2){
+        if(parseInt(starShipData[0].passengers)>parseInt(starShipData[1].passengers)){
+          setUserScore(userScore+1);
+        }
+        else if (parseInt(starShipData[1].passengers)>parseInt(starShipData[0].passengers)){
+          setComputerScore(computerScore+1);
+        }
+      }
+      if(data==3){
+        if(parseInt(starShipData[0].films.length.toString())>parseInt(starShipData[1].films.length.toString())){
+          setUserScore(userScore+1);
+        }
+        else if (parseInt(starShipData[1].films.length.toString())>parseInt(starShipData[0].films.length.toString())){
+          setComputerScore(computerScore+1);
+        }
+      }
+    }
+  } 
+  const changeRound = () => {
+    if(createCount==10){
+      setIsFinish(true);
+    }
+    else{      
+      setClickedItems([]);
+      getRandomStarShips();
+      setCreateCount(createCount+1);
+    }
+  }
   const handlePlayMusic = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
         audioRef.current.play();
-        console.log("played");
         setIsMusicPlaying(true);
       } else {
         audioRef.current.pause();
-        console.log("paused");
         setIsMusicPlaying(false);
       }
     }
   };
+  const makeNewGame = () => {
+    setClickedItems([]);
+    getRandomStarShips();
+    setCreateCount(0);
+    setIsFinish(false);
+    setUserScore(0);
+    setComputerScore(0);
+  }
 
   return (
     <div className="my-home-container">
@@ -113,17 +190,37 @@ const Home = () => {
         </div>
       </div>
       <Round count={createCount} />
+      <div className="next-btn-container">
+        <Button onClick={()=>changeRound()} className="next-btn">{createCount==10 ? 'FINISH' : 'NEXT ROUND'}</Button>
+      </div>
       <div className="my-card-container">
         <Card
           type="user"
-          onClick={handleCardUserClick}
+          onClickItem={(id) => setClickedItems((prev) => [...prev, id])}
           clickable={true}
           clickedItems={clickedItems}
-          onClickItem={(id) => setClickedItems((prev) => [...prev, id])}
           starShipData={starShipData[0]}
+          onClick={(id)=>handleCardUserClick(id)}
+          isItemClicked={(data)=> handleCardItemClick(data)}
         />
-        <Card type="computer" clickable={false} clickedItems={clickedItems} starShipData={starShipData[1]} />
+        <Card type="computer" clickable={false} clickedItems={clickedItems} starShipData={starShipData[1]} isItemClicked={()=>{}} />
       </div>
+      <Modal
+        centered
+        footer={
+          <Button className="new-game-btn" onClick={()=> makeNewGame()}>New Game</Button>
+        }
+        open={isFinish}
+        closeIcon={null}
+        width={400}
+        title={userScore > computerScore ? (
+          <p className="notify-header">You Win</p>
+        ) : userScore < computerScore ? (
+          <p className="notify-header">You Lose</p>
+        ) : (
+          <p className="notify-header">It's a Tie</p>
+        )}
+      />
     </div>
   );
 };
